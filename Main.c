@@ -11,7 +11,7 @@ char* LerStringDinamicamente(int ASCIIcodeStopCondition){
 	int MAX_TAM = 256;
 	char *string = (char*) malloc(sizeof(char) * MAX_TAM);
 	int count = 0;
-	while ((caracter = getchar()) != ASCIIcodeStopCondition) //10 é o ASCII code para a tecla Enter.
+	while ((caracter = getchar()) != ASCIIcodeStopCondition)
 	{
 		if(count > MAX_TAM){
 			MAX_TAM = MAX_TAM + 256;
@@ -24,8 +24,8 @@ char* LerStringDinamicamente(int ASCIIcodeStopCondition){
 	return string;
 	
 }
-void PushForVetorChar(char vetor[], char String[]){
-	vetor[sizeof(vetor)] = String;
+void PushForVetorChar(char **vetor, int TAMOfPonteiros,char String[]){
+	vetor[TAMOfPonteiros] = String;
 }
 
 void LimparPonteirosParaPalavras(char **PonteirosParaPalavras){
@@ -51,8 +51,8 @@ void main(){
 			"*2 - Inserir entrada(s) manualmente com processamento imediato      *\n"
 			"*3 - Inserir entrada(s) manualmente                                 *\n"
 			"*4 - Processar palavras Salvas					                     *\n"
-			"*5 - Definir nome do arquivo de gravação                            *\n"
-			"*6 - Gerar todas as possibilidades                                  *\n"
+			"*5 - Habilitar ou Desabilitar salvamento em disco                   *\n"
+			"*6 - Limpar todas as entradas.										 *\n"
 			"*********************************************************************\n"
 		);
         scanf("%d", &option);
@@ -66,6 +66,7 @@ void main(){
 			ClearScreen();
 			char name[256]; //Em geral, os sistemas de arquivos limitam o nome de arquivos em 256 caracters, por isso, esse valor fixo é o suficiente.
 			printf("Digite o nome do arquivo sem a extensão.");
+			scanf("%s", name);
 			strcat(name, ".txt");
 			FILE *arq = fopen(name, "w+");
 			TAMOfPonteiros = ProcessarEntradaViaArquivo(arq, PonteirosParaPalavras, TAMOfPonteiros);
@@ -76,12 +77,12 @@ void main(){
 			printf("Digite uma palavra e pressione Enter para verificar se a palavra é aceita ou não.");
 			char *palavra = LerStringDinamicamente(10); // ASCII code para a tecla Enter.
 			char **PonteiroParaPalavra = (char**) malloc(sizeof(char*) * 1);
-			PonteirosParaPalavras[0] = palavra;
+			PonteiroParaPalavra[0] = palavra;
 			// PushForVetorChar(PonteirosParaPalavras, palavra);
 			// TAMOfPonteiros++;
 			// PonteirosParaPalavras = realloc(PonteirosParaPalavras, TAMOfPonteiros);
-			FuncaoProgramaAutomato(PonteiroParaPalavra, TAMOfPonteiros);
-			LimparPonteirosParaPalavras(PonteirosParaPalavras);
+			FuncaoProgramaAutomato(PonteiroParaPalavra, 1);
+			//LimparPonteirosParaPalavras(PonteiroParaPalavra);
 			free(palavra);
 			free(PonteiroParaPalavra);
 			break;
@@ -89,22 +90,25 @@ void main(){
 			ClearScreen();
 			printf("Digite uma palvra e em seguida digite Enter para digitar a próxima.\n"
 			"Se desejar parar a digitação de palavras, pressione ESC e em seguida pressione Enter.\n");
-			char *palavra = LerStringDinamicamente(27); //ASCII code para a tecla ESC.
+			char *palavra1 = LerStringDinamicamente(42); //ASCII code para a tecla *.
 			int MAX_TAM = 256;
 			char *auxiliar = (char*) malloc(sizeof(char) * MAX_TAM);
 			int count = 0;
-			for(int i = 0; palavra[i] != 27; i++){
+			for(int i = 0; palavra1[i] != 27; i++){
+
 				if(count > MAX_TAM){
 					MAX_TAM = MAX_TAM + 256;
 					auxiliar = realloc(auxiliar, MAX_TAM);
 				}
-				auxiliar[i] = palavra[i];
-				if(auxiliar[i] == 10){
-					PushForVetorChar(PonteirosParaPalavras, auxiliar);
+				auxiliar[count] = palavra1[i];
+				if(auxiliar[count] == 10){
+					PushForVetorChar(PonteirosParaPalavras, TAMOfPonteiros,auxiliar);
 					TAMOfPonteiros++;
 					PonteirosParaPalavras = realloc(PonteirosParaPalavras, TAMOfPonteiros);
 					MAX_TAM = 256;
 					auxiliar = (char*) malloc(sizeof(char) * MAX_TAM);
+					count = -1;
+
 				}
 				count++;
 			}
@@ -114,6 +118,10 @@ void main(){
 		case 4:
 			ClearScreen();
 			FuncaoProgramaAutomato(PonteiroParaPalavra, TAMOfPonteiros);
+			break;
+		case 6:
+			ClearScreen();
+			LimparPonteirosParaPalavras(PonteirosParaPalavras);
         default:
             break;
         }

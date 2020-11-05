@@ -7,9 +7,8 @@
 #include <locale.h>
 #include <malloc.h>
 #include <crtdbg.h>
-#include <unistd.h> //Linux
+//#include <unistd.h> //Linux
 
-const char ExeptionList[] = {27, "/", "*", "-", "+", ".", ",", "=", "\\"};
 
 typedef struct Estado{
     char name[5];
@@ -18,7 +17,8 @@ typedef struct Estado{
     int Hierarquia;
 } Estado;
 
-int ProcessarEntradaViaArquivo(FILE *arq, char* PonteirosParaPalavras, int TAMOfPonteiros);
-void FuncaoProgramaAutomato(char *PonteirosParaPalavras, int TAMOfPonteiros);
+int ProcessarEntradaViaArquivo(FILE *arq, char** PonteirosParaPalavras, int TAMOfPonteiros);
+void FuncaoProgramaAutomato(char **PonteirosParaPalavras, int TAMOfPonteiros);
+void SystemPause();
 
 
