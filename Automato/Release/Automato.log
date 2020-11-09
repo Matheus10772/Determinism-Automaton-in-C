@@ -1,0 +1,10 @@
+﻿  Functions.c
+C:\Users\mathe\Desktop\TPTeoriaDeLinguagens-MatheusDeCastroOliveira\Versão para windows\Código fonte\Determinism-Automaton-in-C\Functions.c(132,27): warning C4018: '<': incompatibilidade de signed/unsigned
+C:\Users\mathe\Desktop\TPTeoriaDeLinguagens-MatheusDeCastroOliveira\Versão para windows\Código fonte\Determinism-Automaton-in-C\Functions.c(136,31): warning C4018: '<': incompatibilidade de signed/unsigned
+  Main.c
+  Gerando código
+  1 of 19 functions ( 5.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finalizada a geração de código
+  Automato.vcxproj -> C:\Users\mathe\Desktop\TPTeoriaDeLinguagens-MatheusDeCastroOliveira\Versão para windows\Código fonte\Automato\Release\Automato.exe

@@ -7,12 +7,11 @@
 #include <locale.h>
 #include <malloc.h>
 #include <crtdbg.h>
-//#include <unistd.h> //Linux
 
 
-typedef struct Estado{
+typedef struct Estado{ //Estrutura de dados que representa os estados do autômato 
     char name[5];
-    char CaracteresAceitos[256];
+    char* CaracteresAceitos;
     struct Estado *EstadosAlcancaveis[5];
     int Hierarquia;
 } Estado;

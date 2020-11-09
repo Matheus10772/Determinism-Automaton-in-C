@@ -1,0 +1,21 @@
+	Para compilar o código fonte, é necessário ter instalado no computador o VisualStudio
+IDE e a carga de trabalho com componentes de desenvolvimento C++ para windows. Após isso,
+basta a brir a pasta "Automato" e em seguida dar dois cliques em "Automato.sln",
+aguarde a IDE carregar e em seguida clique em "Depurador local do windows".
+Se a compilação for bem sucedida o binário gerado será aberto automaticamente
+pela IDE.
+
+Deixei a interface do programa o mais simples e intuitiva possível:
+
+1- A opção 1 permite importar as palavras que serão iseredas no autômato de um arquivo
+   do tipo .txt. Certifique-se de que o arquivo que vai usar de exemplo está no mesmo
+   diretório do binário.
+2- A opção 2 permite o usuário digitar uma palavra e em seguida ela será processada
+   no autômato imediatamente, sem armazenar na memória.
+
+3- A opção 3 permite o usuário iserir mais palvras manualmente, salvar na memória
+  para ser processada no autômato depois
+
+4-A opção 4 é a opção que processa todas as palavras salvas na memória no autômato.
+
+6 - Essa opção Limpa todas as palavras que estavam armazenadas na memória.
